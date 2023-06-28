@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-function MainPage() {
+function BeforeLoginPage() {
   const navigate = useNavigate();
   return (
     <div style={{ background: 'black' }}>
@@ -207,4 +207,4 @@ export const MainFormButton = styled.button`
     opacity: 0.8;
   }
 `;
-export default MainPage;
+export default BeforeLoginPage;

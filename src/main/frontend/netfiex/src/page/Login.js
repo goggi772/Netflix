@@ -3,7 +3,7 @@ import {
   MainPageBackGround,
   MainNavBarBackGround,
   MainNavBar,
-} from './MainPage';
+} from './BeforeLoginPage';
 import styled from 'styled-components';
 
 function Login(params) {
@@ -37,7 +37,13 @@ function Login(params) {
                   type='text'
                   placeholder='이메일 주소 또는 전화번호'
                 ></LoginInput>
-                <LoginButton>로그인</LoginButton>
+                <LoginButton
+                  onClick={() => {
+                    navigate('/main');
+                  }}
+                >
+                  로그인
+                </LoginButton>
               </LoginForm>
               <LoginCheckBoxDiv>
                 <LoginCheck htmlFor='로그인 정보 저장'>
@@ -68,8 +74,8 @@ function Login(params) {
     </div>
   );
 }
-export default Login;
-const LoginLogoContainer = styled.div`
+
+export const LoginLogoContainer = styled.div`
   cursor: pointer;
   z-index: 10000;
   d
@@ -196,3 +202,4 @@ export const LoginDetailGoogle = styled.a`
     text-decoration: underline;
   }
 `;
+export default Login;

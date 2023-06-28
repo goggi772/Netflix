@@ -9,15 +9,17 @@ import './Reset.css';
 import Footer from './components/Footer';
 
 /* page */
-import MainPage from './page/MainPage';
+import BeforeLoginPage from './page/BeforeLoginPage';
 import Login from './page/Login';
+import Main from './page/Main';
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<MainPage />}></Route>
+          <Route path='/' element={<BeforeLoginPage />}></Route>
           <Route path='/login' element={<Login />}></Route>
+          <Route path='/main' element={<Main />}></Route>
         </Routes>
       </Router>
       <Footer></Footer>
