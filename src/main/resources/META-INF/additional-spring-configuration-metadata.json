@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "spring.datasource.developerplus.jdbcUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.developerplus.jdbcUrl'"
+  },
+  {
+    "name": "spring.datasource.developerplus.username",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.developerplus.username'"
+  },
+  {
+    "name": "spring.datasource.developerplus.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.developerplus.password'"
+  },
+  {
+    "name": "spring.datasource.developerplus.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.developerplus.driver-class-name'"
+  }
+]}
