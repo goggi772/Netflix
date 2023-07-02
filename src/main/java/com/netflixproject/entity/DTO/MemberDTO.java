@@ -1,5 +1,6 @@
 package com.netflixproject.entity.DTO;
 
+import com.netflixproject.entity.BaseTimeEntity;
 import com.netflixproject.entity.member.Member;
 import com.netflixproject.entity.member.Role;
 import lombok.AllArgsConstructor;
@@ -7,11 +8,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberDTO {
+public class MemberDTO extends BaseTimeEntity {
 
     private String username;
     private String password;
@@ -20,16 +23,18 @@ public class MemberDTO {
 
     private String email;
 
+    private LocalDateTime registerTime;
+
     private Role role;
 
     public Member toEntity() {
-        Member member = Member.builder()
+        return Member.builder()
                 .username(username)
                 .password(password)
                 .nickname(nickname)
                 .ema(email)
-                .role(role.USER)
+                .role(Role.USER)
+                .registerTime(LocalDateTime.now())
                 .build();
-        return member;
     }
 }

@@ -8,6 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class MemberService {
@@ -21,5 +24,13 @@ public class MemberService {
         dto.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
 
         return memberRepository.save(dto.toEntity());
+    }
+
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
+
+    public Optional<Member> findById(Long id) {
+        return memberRepository.findById(id);
     }
 }

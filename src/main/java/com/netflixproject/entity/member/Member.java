@@ -4,6 +4,7 @@ import com.netflixproject.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -27,6 +28,9 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false, length = 50)
     private String ema;
+
+    @Column(nullable = false)
+    private LocalDateTime registerTime;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
