@@ -28,7 +28,7 @@ public class MemberIndexController {
     }
 
     @PostMapping("/auth/registerProc")
-    public String registerProc(MemberDTO dto) {
+    public String registerProc(@RequestBody MemberDTO dto) {
         memberService.register(dto);
         return "redirect:/auth/show";
     }
