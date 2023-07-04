@@ -1,5 +1,7 @@
 h1{
     text-align: center;
     justify-content: space-around;
-    
+    border-radius:5px;
+    align-items: center;
+
 }
