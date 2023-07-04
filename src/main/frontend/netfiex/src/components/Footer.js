@@ -61,7 +61,7 @@ export default Footer;
 export const FooterTopDiv = styled.div`
   height: 10vh;
   position: relative;
-  z-index: 9999;
+  z-index: 999;
 `;
 export const FooterBackground = styled.div`
   background: rgba(0, 0, 0);

@@ -4,45 +4,22 @@ import styled from 'styled-components';
 import Card from './Card';
 import { useRef, useEffect } from 'react';
 import CardModal from './CardModal';
-import CarouselTopTen from './CarouselTopTen';
-function CarouselCard(props) {
+function CarouselTopTen(props) {
   const images = [
-    '../1.jpg',
-    '../2.jpg',
-    '../3.jpg',
-    '../4.jpg',
-    '../5.jpg',
-    '../6.jpg',
-    '../7.jpg',
-    '../8.jpg',
-    '../9.jpg',
-    '../10.jpg',
-    '../11.jpg',
-    '../12.jpg',
-    '../13.jpg',
-    '../14.jpg',
-    '../15.jpg',
-    '../16.jpg',
+    '../topten1.jpg',
+    '../topten2.jpg',
+    '../topten3.jpg',
+    '../topten4.jpg',
+    '../topten5.jpg',
+    '../topten6.jpg',
+    '../topten7.jpg',
+    '../topten8.jpg',
+    '../topten9.jpg',
+    '../topten10.jpg',
   ];
   const carouselTitle = [
     {
-      title: '내가 찜한 컨텐츠',
-    },
-    {
-      title: '액션',
-    },
-    {
-      title: 'SF',
-    },
-
-    {
-      title: '공포',
-    },
-    {
-      title: '코미디',
-    },
-    {
-      title: '멜로/로맨스',
+      title: '오늘의 Top10',
     },
   ];
 
@@ -55,7 +32,7 @@ function CarouselCard(props) {
   const nextSlide = (index) => {
     setCurrentSlide((prevSlides) => {
       const newSlides = [...prevSlides];
-      newSlides[index] = (newSlides[index] + 1) % 3;
+      newSlides[index] = (newSlides[index] + 1) % 2;
       return newSlides;
     });
   };
@@ -63,7 +40,7 @@ function CarouselCard(props) {
   const prevSlide = (index) => {
     setCurrentSlide((prevSlides) => {
       const newSlides = [...prevSlides];
-      newSlides[index] = newSlides[index] === 0 ? 3 : newSlides[index] - 1;
+      newSlides[index] = newSlides[index] === 0 ? 2 : newSlides[index] - 1;
       return newSlides;
     });
   };
@@ -78,7 +55,6 @@ function CarouselCard(props) {
   return (
     <>
       <CarouselDiv>
-        <CarouselTopTen></CarouselTopTen>
         {carouselTitle.map((carousel, index) => (
           <div key={index}>
             <CarouselTitle>{carousel.title}</CarouselTitle>
@@ -146,4 +122,4 @@ export const Button = styled.button`
   margin-bottom: 1%;
 `;
 
-export default CarouselCard;
+export default CarouselTopTen;

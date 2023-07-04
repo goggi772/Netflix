@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import '../App.css';
 function BeforeLoginPage() {
   const navigate = useNavigate();
   return (
