@@ -1,6 +1,10 @@
 package com.netflixproject.config;
 
 
+import com.netflixproject.handler.LoginFailureHandler;
+import com.netflixproject.handler.LoginSuccessHandler;
+import com.netflixproject.jwt.JwtAuthenticationFilter;
+import com.netflixproject.jwt.JwtTokenProvider;
 import com.netflixproject.service.MemberDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +15,10 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @RequiredArgsConstructor
 @Configuration
@@ -20,6 +26,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    private final JwtTokenProvider jwtTokenProvider;
+    private final LoginSuccessHandler loginSuccessHandler;
+    private final LoginFailureHandler loginFailureHandler;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -40,16 +49,19 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**")
-                .permitAll()
+                .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
-                .loginPage("/auth/login")
-                .loginProcessingUrl("registerProc") //submit을 받을 url주소
-                .defaultSuccessUrl("/")
+                .loginPage("/auth/login-form")
+                .loginProcessingUrl("/auth/login") //submit을 받을 url주소
+/*                .successHandler(loginSuccessHandler) // 성공시 요청을 처리할 핸들러
+                .failureHandler(loginFailureHandler)*/ // 실패시 요청을 처리할 핸들러
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")

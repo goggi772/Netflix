@@ -3,13 +3,11 @@ package com.netflixproject.entity.DTO;
 import com.netflixproject.entity.BaseTimeEntity;
 import com.netflixproject.entity.member.Member;
 import com.netflixproject.entity.member.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
