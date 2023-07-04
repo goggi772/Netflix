@@ -78,7 +78,7 @@ function Login(params) {
 export const LoginLogoContainer = styled.div`
   cursor: pointer;
   z-index: 10000;
-  d
+  
 `;
 export const LoginLogo = styled.img`
   width: 20%;

@@ -32,7 +32,7 @@ function Header() {
 
 export default Header;
 export const HeaderContainer = styled.div`
-  height: 100vh;
+  height: 200vh;
 `;
 
 export const HeaderLogoContainer = styled.div`
@@ -40,7 +40,9 @@ export const HeaderLogoContainer = styled.div`
   top: 0;
   position: sticky;
   height: 10vh;
-  margin-left: 5%;
+  padding-left: 5%;
+  background: black;
+  z-index: 9999;
 `;
 
 export const HeaderLogo = styled.img`
