@@ -1,0 +1,54 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+<body>
+<p>로그인 후 접속가능한 페이지</p>
+
+<form action="/auth/login" method="post">
+  <div> id
+    <input name="id" type="text" value="id">
+  </div>
+  <div> pwd
+    <input name="pwd" type="text" value="password">
+    <button type="submit">로그인</button>
+    <button type="reset">취소</button>
+  </div>
+
+  &lt;!&ndash; ID : <span th:text="${login.username}">로그인 아이디</span> NAME : <span th:text="${login.password}">로그인 사용자</span>
+  &ndash;&gt;
+  &lt;!&ndash;<p><a href="/logout">로그아웃</a></p>&ndash;&gt;
+</form>
+</body>
+</html>-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+  <h1>로그인</h1>
+  <form th:action="@{/auth/login}" method="post">
+    <div class="form-group">
+      <label th:for="username">아이디</label>
+      <input type="text" name="username" class="form-control" placeholder="아이디 입력해주세요">
+    </div>
+    <div class="form-group">
+      <label th:for="password">비밀번호</label>
+      <input type="password" class="form-control" name="password" placeholder="비밀번호 입력해주세요">
+    </div>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <button type="button" class="btn btn-primary" onClick="location.href='/auth/register'">회원 가입</button>
+  </form>
+  <br/>
+</div>
+</body>
+</html>
