@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 @Controller
 public class MemberIndexController {
@@ -36,6 +37,8 @@ public class MemberIndexController {
     public TokenInfo login(@ModelAttribute MemberLoginDTO memberLoginDTO) {
         String id = memberLoginDTO.getUsername();
         String password = memberLoginDTO.getPassword();
+        System.out.println(id);
+        System.out.println(password);
         return memberService.login(id, password);
     }
 
