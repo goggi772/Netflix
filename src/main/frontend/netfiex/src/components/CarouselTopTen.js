@@ -58,23 +58,26 @@ function CarouselTopTen(props) {
         {carouselTitle.map((carousel, index) => (
           <div key={index}>
             <CarouselTitle>{carousel.title}</CarouselTitle>
-            <CarouselContentDiv
-              ref={(el) => {
-                slideRefs.current[index] = { current: el };
-              }}
-            >
-              {images.map((image, i) => (
-                <CarouselContent
-                  key={i}
-                  src={image}
-                  onClick={() => {
-                    isSetModal(true);
-                  }}
-                />
-              ))}
-            </CarouselContentDiv>
-            <Button onClick={() => prevSlide(index)}>이전</Button>
-            <Button onClick={() => nextSlide(index)}>다음</Button>
+            <Slider>
+              <LeftArrow onClick={() => prevSlide(index)}>&#60;</LeftArrow>
+              <CarouselContentDiv
+                ref={(el) => {
+                  slideRefs.current[index] = { current: el };
+                }}
+              >
+                {images.map((image, i) => (
+                  <CarouselContent
+                    key={i}
+                    src={image}
+                    onClick={() => {
+                      isSetModal(true);
+                    }}
+                  />
+                ))}
+              </CarouselContentDiv>
+
+              <RightArrow onClick={() => nextSlide(index)}>&#62;</RightArrow>
+            </Slider>
           </div>
         ))}
       </CarouselDiv>
@@ -82,7 +85,11 @@ function CarouselTopTen(props) {
     </>
   );
 }
-
+const Slider = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+`;
 export const CarouselDiv = styled.div`
   width: 90vw;
 
@@ -111,15 +118,29 @@ export const CarouselContent = styled.img`
   margin-bottom: 1%;
   cursor: pointer;
 `;
-export const Left = styled.div``;
 
-export const Button = styled.button`
-  padding: 0 2em;
+
+export const Arrow = styled.button`
+  position: absolute;
+
+  direction: ${(props) => props.direction};
   color: white;
-  background: unset;
-  border: none;
+  opacity: 0.5;
+  font-size: 60px;
   cursor: pointer;
-  margin-bottom: 1%;
+  z-index: 1;
+  border: none;
+  background: none;
+  &:hover {
+    opacity: 1;
+  }
+`;
+const LeftArrow = styled(Arrow.withComponent('button'))`
+  left: 0px;
+`;
+
+const RightArrow = styled(Arrow.withComponent('button'))`
+  right: 0px;
 `;
 
 export default CarouselTopTen;

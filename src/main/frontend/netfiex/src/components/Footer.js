@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Langbtn } from '../page/BeforeLoginPage';
+
 function Footer() {
   return (
     <FooterTopDiv>
@@ -15,17 +15,7 @@ function Footer() {
           <FooterDetailContentQnA>쿠키 설정</FooterDetailContentQnA>
           <FooterDetailContentQnA>회사 정보</FooterDetailContentQnA>
         </FooterDetailContent>
-        <Langbtn
-          style={{
-            width: '10%',
-            marginLeft: '15%',
-            marginTop: '2%',
-            height: '5vh',
-          }}
-        >
-          <option>한국어</option>
-          <option>영어</option>
-        </Langbtn>
+
         <FooterContent style={{ paddingTop: '2%' }}>
           <FooterSubDetailContent>
             넷플릭스서비시스코리아 유한회사 통신판매업신고번호:
