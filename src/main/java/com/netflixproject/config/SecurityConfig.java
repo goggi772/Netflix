@@ -1,16 +1,11 @@
 package com.netflixproject.config;
 
 
-import com.netflixproject.handler.LoginFailureHandler;
-import com.netflixproject.handler.LoginSuccessHandler;
-import com.netflixproject.jwt.JwtAuthenticationFilter;
-import com.netflixproject.jwt.JwtTokenProvider;
-import com.netflixproject.service.MemberDetailsService;
+import com.netflixproject.jwt.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,8 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
-    private final LoginSuccessHandler loginSuccessHandler;
-    private final LoginFailureHandler loginFailureHandler;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -48,24 +42,20 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**").permitAll()
+                .antMatchers("/auth/**", "/posts/read/**", "/posts/search/**", "/images/**", "/css/**", "/js/**", "/ico/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .loginPage("/auth/login-form")
-                .loginProcessingUrl("/auth/login") //submit을 받을 url주소
-/*                .successHandler(loginSuccessHandler) // 성공시 요청을 처리할 핸들러
-                .failureHandler(loginFailureHandler)*/ // 실패시 요청을 처리할 핸들러
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .accessDeniedHandler()
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true);
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

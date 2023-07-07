@@ -8,17 +8,18 @@ public enum ErrorCode {
 
     AUTHENTICATION_FAILED(401, "AUTH001", " AUTHENTICATION_FAILED."),
     LOGIN_FAILED(401, "AUTH002", " LOGIN_FAILED."),
-    INVALID_JWT_TOKEN(401, "AUTH003", "INVALID_JWT_TOKEN.");
+    INVALID_JWT_TOKEN(401, "AUTH003", "INVALID_JWT_TOKEN."),
+    EXPIRED_TOKEN(401, "AUTH004", "EXPIRED_TOKEN");
 
-    private final int code;
+    private final String code;
 
     private final String message;
 
-    private final String status;
+    private int status;
 
-    ErrorCode(int code, String message, String status) {
-        this.code = code;
-        this.message = message;
+    ErrorCode(final int status, final String message, final String code) {
         this.status = status;
+        this.message = message;
+        this.code = code;
     }
 }
