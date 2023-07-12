@@ -1,22 +1,24 @@
 package com.netflixproject.service;
 
-import antlr.Token;
-import com.netflixproject.entity.DTO.MemberDTO;
+import com.netflixproject.entity.DTO.MemberFindDTO;
+import com.netflixproject.entity.DTO.MemberRegisterDTO;
 import com.netflixproject.entity.DTO.TokenInfo;
 import com.netflixproject.entity.member.Member;
 import com.netflixproject.jwt.JwtTokenProvider;
 import com.netflixproject.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -46,7 +48,7 @@ public class MemberService {
     }
 
     @Transactional
-    public Member register(MemberDTO dto) {
+    public Member register(MemberRegisterDTO dto) {
         dto.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
 
         return memberRepository.save(dto.toEntity());
@@ -54,6 +56,12 @@ public class MemberService {
 
     public List<Member> findAll() {
         return memberRepository.findAll();
+    }
+
+    public Optional<Member> findByEmail(MemberFindDTO memberFindDTO) {
+        Optional<Member> member = memberRepository.findByEma(memberFindDTO.getEmail());
+        if (member.isPresent()) return member;
+        else throw new UsernameNotFoundException("이메일이 존재히지 않음");
     }
 
     public Optional<Member> findById(Long id) {

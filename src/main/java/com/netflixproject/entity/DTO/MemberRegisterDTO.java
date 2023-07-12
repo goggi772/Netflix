@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberDTO extends BaseTimeEntity {
+public class MemberRegisterDTO extends BaseTimeEntity {
 
     private String username;
     private String password;
@@ -32,7 +32,6 @@ public class MemberDTO extends BaseTimeEntity {
                 .nickname(nickname)
                 .ema(email)
                 .role(Role.USER)
-                .registerTime(LocalDateTime.now())
                 .build();
     }
 }

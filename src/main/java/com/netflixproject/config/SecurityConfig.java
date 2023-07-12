@@ -2,10 +2,13 @@ package com.netflixproject.config;
 
 
 import com.netflixproject.jwt.*;
+import com.netflixproject.service.MemberDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +26,7 @@ public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final MemberDetailsService memberDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -47,7 +51,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/posts/read/**", "/posts/search/**", "/images/**", "/css/**", "/js/**", "/ico/**").permitAll()
+                .antMatchers("/auth/**","/login", "/posts/read/**", "/posts/search/**", "/images/**", "/css/**", "/js/**", "/ico/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

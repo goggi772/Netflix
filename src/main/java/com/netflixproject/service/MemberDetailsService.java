@@ -20,24 +20,11 @@ public class MemberDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-//    private final HttpSession session;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        /*Optional<Member> member = memberRepository.findByUsername(username);
-        if (member.isPresent()) {
-            log.info("username");
-            return new MemberServiceDetails(member.get());
-        } else {
-            log.info("non user");
-            throw new UsernameNotFoundException("이용자가 존재하지 않습니다. :" + username);
-        }*/
         Member member = memberRepository.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException("이용자가 존재하지 않습니다. :" + username));
-//        session.setAttribute("member", new MemberSessionDTO(member));
-        System.out.println(member.toString());
+                new UsernameNotFoundException("Not_Found_User"))  ;
         return new MemberServiceDetails(member);
     }
 }

@@ -1,5 +1,6 @@
 package com.netflixproject.repository;
 
+import com.netflixproject.entity.DTO.MemberFindDTO;
 import com.netflixproject.entity.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByUsername(String username);
+
+    Optional<Member> findByEma(String email);
 
     /*static final String UPDATE_USER_LAST_LOGIN = "UPDATE member SET MODIFIED_TIME = :lastLoginTime WHERE USERNAME = :username";
 
