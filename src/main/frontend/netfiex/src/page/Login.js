@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useRef } from 'react';
 import styled from 'styled-components';
 import './Login.css';
 import SignUpScreen from './SignUpScreen.js';
@@ -8,6 +8,25 @@ import axios from 'axios';
 function Login(params) {
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState(false);
+  const [inputEmail, setinputEmail] = useState(0);
+  const checkemailRef = useRef(null);
+  const onInput = (e) => {
+    setinputEmail(e.target.value);
+  };
+  const checkEmail = () => {
+    const email = inputEmail;
+    axios
+      .get('/auth/check_email', {
+        email: email,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        alert('존재하지 않는 아이디 입니다.');
+      });
+  };
+  console.log(inputEmail);
   const register = (username, password, nickname, email) => {
     axios
       .post('/api/join', {
@@ -62,12 +81,17 @@ function Login(params) {
               </h3>
               <div className='loginScreen__input'>
                 <form>
-                  <input type='email' placeholder='이메일을 입력하세요' />
+                  <input
+                    type='email'
+                    ref={checkemailRef}
+                    onChange={onInput}
+                    placeholder='이메일을 입력하세요'
+                  />
                   <button
                     className='loginScreen__getStart'
                     onClick={(e) => {
                       e.preventDefault();
-                      register();
+                      checkEmail();
                     }}
                   >
                     시작하기
