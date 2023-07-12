@@ -8,7 +8,7 @@ group = 'com'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '8'
+    sourceCompatibility = "10"
 }
 
 configurations {
@@ -90,3 +90,4 @@ task copyReactBuildFiles(type: Copy) {
     from "$frontendDir/build"
     into "$projectDir/src/main/resources/static"
 }
+targetCompatibility = JavaVersion.VERSION_10
