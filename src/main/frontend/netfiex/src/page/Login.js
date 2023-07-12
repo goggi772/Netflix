@@ -4,9 +4,28 @@ import styled from 'styled-components';
 import './Login.css';
 import SignUpScreen from './SignUpScreen.js';
 import { useState } from 'react';
+import axios from 'axios';
 function Login(params) {
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState(false);
+  const register = (username, password, nickname, email) => {
+    axios
+      .post('/api/join', {
+        username: username,
+        password: password,
+        nickname: nickname,
+        email: email,
+      })
+      .then((response) => {
+        const token = localStorage.setItem(
+          'accessToken',
+          response.data['accessToken']
+        );
+        console.log(token);
+      })
+      .catch((error) => console.log(error));
+    // emailRef.current.value, passwordRef.current.value;
+  };
   return (
     <div className='loginScreen'>
       <div className='loginScreen__background'>
@@ -28,7 +47,7 @@ function Login(params) {
         <div className='loginScreen__gradient'></div>
         <div className='loginScreen__body'>
           {signIn ? (
-            <SignUpScreen />
+            <SignUpScreen setSignIn={setSignIn} />
           ) : (
             <>
               <h1>영화 ,TV 프로그램을 무제한으로</h1>
@@ -46,8 +65,9 @@ function Login(params) {
                   <input type='email' placeholder='이메일을 입력하세요' />
                   <button
                     className='loginScreen__getStart'
-                    onClick={() => {
-                      setSignIn(true);
+                    onClick={(e) => {
+                      e.preventDefault();
+                      register();
                     }}
                   >
                     시작하기
