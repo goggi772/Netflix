@@ -1,0 +1,20 @@
+{
+  "movie": [
+    {
+      "category": "액션",
+      "imgUrl": "https://occ-0-2218-3996.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABakITc791D0re3sq30U6eP0clUznZAazGL6jx6oP4Ke_8oE-JCWU1xODr3UnjavsAyoNoUHoeBnkn6EPDSXRSy4OE1Zol4WMrriqB-z0oBQEUPzJmG6zG9E-xQ0mgXEL-P9wCLxbCA5qAodM0XNc-NRvqPLrtubnFQYtUnTeaRtedEK_kGbz2bR3F3TwymY.jpg?r=9df"
+    },
+    {
+      "category": "코미디",
+      "imgUrl": "https://occ-0-2218-3996.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABakITc791D0re3sq30U6eP0clUznZAazGL6jx6oP4Ke_8oE-JCWU1xODr3UnjavsAyoNoUHoeBnkn6EPDSXRSy4OE1Zol4WMrriqB-z0oBQEUPzJmG6zG9E-xQ0mgXEL-P9wCLxbCA5qAodM0XNc-NRvqPLrtubnFQYtUnTeaRtedEK_kGbz2bR3F3TwymY.jpg?r=9df"
+    },
+    {
+      "category": "액션",
+      "imgUrl": "https://occ-0-2218-3996.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABakITc791D0re3sq30U6eP0clUznZAazGL6jx6oP4Ke_8oE-JCWU1xODr3UnjavsAyoNoUHoeBnkn6EPDSXRSy4OE1Zol4WMrriqB-z0oBQEUPzJmG6zG9E-xQ0mgXEL-P9wCLxbCA5qAodM0XNc-NRvqPLrtubnFQYtUnTeaRtedEK_kGbz2bR3F3TwymY.jpg?r=9df"
+    },
+    {
+      "category": "액션",
+      "imgUrl": "https://occ-0-2218-3996.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABakITc791D0re3sq30U6eP0clUznZAazGL6jx6oP4Ke_8oE-JCWU1xODr3UnjavsAyoNoUHoeBnkn6EPDSXRSy4OE1Zol4WMrriqB-z0oBQEUPzJmG6zG9E-xQ0mgXEL-P9wCLxbCA5qAodM0XNc-NRvqPLrtubnFQYtUnTeaRtedEK_kGbz2bR3F3TwymY.jpg?r=9df"
+    }
+  ]
+}

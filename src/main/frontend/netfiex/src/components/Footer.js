@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Langbtn } from '../page/BeforeLoginPage';
+
 function Footer() {
   return (
-    <div>
+    <FooterTopDiv>
       <FooterBackground>
         <FooterContent>
           질문이 있으신가요? 문의 전화: 010-8823-5776
@@ -15,17 +15,7 @@ function Footer() {
           <FooterDetailContentQnA>쿠키 설정</FooterDetailContentQnA>
           <FooterDetailContentQnA>회사 정보</FooterDetailContentQnA>
         </FooterDetailContent>
-        <Langbtn
-          style={{
-            width: '10%',
-            marginLeft: '15%',
-            marginTop: '2%',
-            height: '5vh',
-          }}
-        >
-          <option>한국어</option>
-          <option>영어</option>
-        </Langbtn>
+
         <FooterContent style={{ paddingTop: '2%' }}>
           <FooterSubDetailContent>
             넷플릭스서비시스코리아 유한회사 통신판매업신고번호:
@@ -52,12 +42,17 @@ function Footer() {
           </FooterSubDetailContent>
         </FooterContent>
       </FooterBackground>
-    </div>
+    </FooterTopDiv>
   );
 }
 
 export default Footer;
 
+export const FooterTopDiv = styled.div`
+  height: 10vh;
+  position: relative;
+  z-index: 999;
+`;
 export const FooterBackground = styled.div`
   background: rgba(0, 0, 0);
   padding-bottom: 3%;
